@@ -37,8 +37,12 @@ st.write('## Input Value')
 
 # インプットデータ（1行のデータフレーム）
 value_df = pd.DataFrame([],columns=['data','sepal length (cm)','petal length (cm)'])
-record = pd.Series(['data',sepalValue, petalValue], index=value_df.columns)
-value_df = value_df.append(record, ignore_index=True)
+# 連結するDataFrameオブジェクトを作成
+record = pd.Series(['data', sepalValue, petalValue], index=value_df.columns)
+df_to_append = pd.DataFrame([record])
+# DataFrameオブジェクトを連結する
+value_df = pd.concat([value_df, df_to_append], ignore_index=True)
+# インデックスを設定する
 value_df.set_index('data',inplace=True)
 
 # 入力値の値
